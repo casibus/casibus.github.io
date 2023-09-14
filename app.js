@@ -1,28 +1,26 @@
-// Simulate architectural suggestions (dummy data)
-const mockSuggestions = [
-    "Modern Single-Family Home",
-    "Traditional Townhouse",
-    "Contemporary Apartment Building"
-];
-
-// Function to update architectural suggestions
-function updateSuggestions() {
-    const suggestionsContainer = document.getElementById("suggestions-container");
-    suggestionsContainer.innerHTML = "";
-    mockSuggestions.forEach((suggestion, index) => {
-        const suggestionItem = document.createElement("div");
-        suggestionItem.classList.add("suggestion-item");
-        suggestionItem.innerText = `${index + 1}. ${suggestion}`;
-        suggestionsContainer.appendChild(suggestionItem);
-    });
-}
-
 // Event listener for the Upload button
 const uploadButton = document.getElementById("upload-button");
+const pdfImageFileInput = document.getElementById("pdf-image-file-input");
+const planPreviewContainer = document.getElementById("plan-preview-container");
+
 uploadButton.addEventListener("click", () => {
-    // Simulate loading PDF and processing data
-    setTimeout(() => {
-        // Display mock architectural suggestions
-        updateSuggestions();
-    }, 2000); // Simulate a 2-second delay for processing
+    const file = pdfImageFileInput.files[0]; // Get the selected file
+
+    if (file) {
+        // A file has been selected
+
+        if (file.type.startsWith("image/")) {
+            // It's an image file, display it as the Bebauungsplan
+            const imageURL = URL.createObjectURL(file);
+            planPreviewContainer.innerHTML = `<img src="${imageURL}" alt="Bebauungsplan">`;
+        } else if (file.type === "application/pdf") {
+            // It's a PDF file, you can add code to process and display PDFs here
+            // For example, you can use PDF.js library for rendering PDFs
+            // This requires more advanced PDF handling, not covered in this example
+            planPreviewContainer.innerHTML = "PDF Bebauungsplan (Processing PDF)";
+        }
+    } else {
+        // No file selected or selection canceled
+        planPreviewContainer.innerHTML = ""; // Clear the preview
+    }
 });

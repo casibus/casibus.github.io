@@ -1,0 +1,4 @@
+baseURL = 'https://casibus.de/'
+languageCode = 'en-us'
+title = 'Casibus'
+theme = 'ananke'

@@ -1,0 +1,20 @@
+name: example-site
+services:
+  build:
+    build: .
+    volumes:
+      - "./vault:/src/vault"
+      - "./content:/src/content"
+    command: /src/vault /src/content
+    develop:
+      watch:
+        - action: rebuild
+          path: ./vault
+  hugo:
+    image: hugomods/hugo:exts-non-root
+    command: server --buildDrafts --renderToMemory --poll 1000ms
+    volumes:
+      - ".:/src/"
+      - ~/hugo_cache:/tmp/hugo_cache
+    ports:
+        - "1313:1313"

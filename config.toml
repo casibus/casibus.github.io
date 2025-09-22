@@ -1,0 +1,8 @@
+baseURL = 'http://casibus.de/'
+languageCode = 'en-us'
+title = 'Johannes / Casibus'
+theme = ["uikit"]
+
+[params]
+username = 'casibus.de'
+author = 'Dr. Johannes Nagele'
